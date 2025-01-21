@@ -1,0 +1,13 @@
+import "math"
+
+func findIndices(nums []int, indexDifference int, valueDifference int) []int {
+    //Try to brute force
+    for i, v := range(nums){
+        for j := i + indexDifference; j < len(nums); j++{
+            if math.Abs(float64(v-nums[j])) >= float64(valueDifference){
+                return []int{i,j}
+            }
+        }
+    }
+    return []int{-1,-1}
+}
