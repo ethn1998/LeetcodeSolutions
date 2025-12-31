@@ -9,31 +9,34 @@ func latestDayToCross(row int, col int, cells [][]int) int { //can get last day 
     for left < right {
         //fmt.Println(t,board)
         mid = left + (right - left)/2
+        if right == left + 1 {
+            mid = right
+        }
         if mid > t { // add water
             for k := t; k < mid; k++ {
                 cell := cells[k] //adj 1-indexed
-                fmt.Println(k, "water", cell)
+                //fmt.Println(k, "water", cell)
                 i = cell[0]-1
                 j = cell[1]-1
                 //fmt.Println(i,j)
                 board[i][j] = 1
-                fmt.Println(board)
+                //fmt.Println(board)
             }
         } else if mid < t { // add land
             for k := t; k >= mid; k-- {
                 cell := cells[k]
-                fmt.Println(k, "land", cell)
+                //fmt.Println(k, "land", cell)
                 i = cell[0]-1
                 j = cell[1]-1
                 //fmt.Println(i,j)
                 board[i][j] = 0
-                fmt.Println(board)
+                //fmt.Println(board)
             }
         } else {
             break
         }
         //fmt.Println(mid,board)
-        fmt.Println(t,mid,board)
+        //fmt.Println(t,mid,board)
         t = mid
         //BFS to check if we can cross
         if bfs(board) {
@@ -43,8 +46,8 @@ func latestDayToCross(row int, col int, cells [][]int) int { //can get last day 
             //fmt.Println("Cannot Cross")
             right = mid - 1
         }
-        fmt.Println("DEBUG BOARD",board)
-        fmt.Println("update leftright",left, right)
+        //fmt.Println("DEBUG BOARD",board)
+        //fmt.Println("update leftright",left, right)
     }
     return left
 }
